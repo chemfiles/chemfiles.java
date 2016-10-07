@@ -21,13 +21,13 @@ public class Atom {
 
         private static Type from_int(int value) {
             if (value == CHFL_ATOM_TYPES.CHFL_ATOM_ELEMENT) {
-                return Type.Element;
+                return Element;
             } else if (value == CHFL_ATOM_TYPES.CHFL_ATOM_COARSE_GRAINED) {
-                return Type.CoarseGrained;
+                return CoarseGrained;
             } else if (value == CHFL_ATOM_TYPES.CHFL_ATOM_DUMMY) {
-                return Type.Dummy;
+                return Dummy;
             } else if (value == CHFL_ATOM_TYPES.CHFL_ATOM_UNDEFINED) {
-                return Type.Undefined;
+                return Undefined;
             } else {
                 throw new IllegalArgumentException(
                     "Got bad value in Atom.Type constructor: " + value
