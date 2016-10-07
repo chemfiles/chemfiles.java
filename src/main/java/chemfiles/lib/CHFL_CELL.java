@@ -8,7 +8,7 @@
 /* ========================================================================= */
 // !!!! AUTO-GENERATED FILE !!!! Do not edit. See the bindgen repository for
 // the generation code (https://github.com/chemfiles/bindgen).
-// This file contains Python ctype interface to the C API
+// This file contains Java JNA interface to the C API
 /* ========================================================================= */
 
 package chemfiles.lib;
