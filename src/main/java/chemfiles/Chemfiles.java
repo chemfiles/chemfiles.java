@@ -38,43 +38,44 @@ public class Chemfiles {
         }
     }
 
+    static void check(int status) throws ChemfilesException {
+        if (status != 0) {
+            throw new ChemfilesException(Lib.chfl_last_error());
+        }
+    }
+
     public static String version() {
         return Lib.chfl_version();
     }
 
-    public static String last_error() {
-        return Lib.chfl_last_error();
+    public static void clear_errors() throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_clear_errors());
     }
 
-    public static void clear_errors() {
-        // TODO: check return codes
-        Lib.chfl_clear_errors();
-    }
-
-    public static LogLevel log_level() {
+    public static LogLevel log_level() throws ChemfilesException {
         IntByReference level = new IntByReference();
-        Lib.chfl_loglevel(level);
+        Chemfiles.check(Lib.chfl_loglevel(level));
         return LogLevel.from_int(level.getValue());
     }
 
-    public static void set_log_level(LogLevel level) {
-        Lib.chfl_set_loglevel(level.as_int());
+    public static void set_log_level(LogLevel level) throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_set_loglevel(level.as_int()));
     }
 
-    public static void log_file(String file) {
-        Lib.chfl_logfile(file);
+    public static void log_file(String file) throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_logfile(file));
     }
 
-    public static void log_stdout() {
-        Lib.chfl_log_stdout();
+    public static void log_stdout() throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_log_stdout());
     }
 
-    public static void log_stderr() {
-        Lib.chfl_log_stderr();
+    public static void log_stderr() throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_log_stderr());
     }
 
-    public static void log_silent() {
-        Lib.chfl_log_silent();
+    public static void log_silent() throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_log_silent());
     }
 
     // TODO: chfl_log_callback

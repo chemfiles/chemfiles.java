@@ -44,76 +44,72 @@ public class Atom {
         this.handle = Lib.chfl_atom(name);
     }
 
-    Atom(CHFL_ATOM handle) {
-        this.handle = handle;
-    }
-
-    public String name() {
+    public String name() throws ChemfilesException {
         byte[] buffer = new byte[128];
-        Lib.chfl_atom_name(this.handle, buffer, buffer.length);
+        Chemfiles.check(Lib.chfl_atom_name(this.handle, buffer, buffer.length));
         return Native.toString(buffer);
     }
 
-    public void set_name(String name) {
-        Lib.chfl_atom_set_name(this.handle, name);
+    public void set_name(String name) throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_atom_set_name(this.handle, name));
     }
 
-    public float mass() {
+    public float mass() throws ChemfilesException {
         FloatByReference mass = new FloatByReference();
-        Lib.chfl_atom_mass(this.handle, mass);
+        Chemfiles.check(Lib.chfl_atom_mass(this.handle, mass));
         return mass.getValue();
     }
 
-    public void set_mass(float mass) {
-        Lib.chfl_atom_set_mass(this.handle, mass);
+    public void set_mass(float mass) throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_atom_set_mass(this.handle, mass));
     }
 
-    public float charge() {
+    public float charge() throws ChemfilesException {
         FloatByReference charge = new FloatByReference();
-        Lib.chfl_atom_charge(this.handle, charge);
+        Chemfiles.check(Lib.chfl_atom_charge(this.handle, charge));
         return charge.getValue();
     }
 
-    public void set_charge(float charge) {
-        Lib.chfl_atom_set_charge(this.handle, charge);
+    public void set_charge(float charge) throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_atom_set_charge(this.handle, charge));
     }
 
-    public String full_name() {
+    public String full_name() throws ChemfilesException {
         byte[] buffer = new byte[128];
-        Lib.chfl_atom_full_name(this.handle, buffer, buffer.length);
+        Chemfiles.check(Lib.chfl_atom_full_name(this.handle, buffer, buffer.length));
         return Native.toString(buffer);
     }
 
-    public double vdw_radius() {
+    public double vdw_radius() throws ChemfilesException {
         DoubleByReference res = new DoubleByReference();
-        Lib.chfl_atom_vdw_radius(this.handle, res);
+        Chemfiles.check(Lib.chfl_atom_vdw_radius(this.handle, res));
         return res.getValue();
     }
 
-    public double covalent_radius() {
+    public double covalent_radius() throws ChemfilesException {
         DoubleByReference res = new DoubleByReference();
-        Lib.chfl_atom_covalent_radius(this.handle, res);
+        Chemfiles.check(Lib.chfl_atom_covalent_radius(this.handle, res));
         return res.getValue();
     }
 
-    public int atomic_number() {
+    public int atomic_number() throws ChemfilesException {
         IntByReference res = new IntByReference();
-        Lib.chfl_atom_atomic_number(this.handle, res);
+        Chemfiles.check(Lib.chfl_atom_atomic_number(this.handle, res));
         return res.getValue();
     }
 
-    public Type type() {
+    public Type type() throws ChemfilesException {
         IntByReference res = new IntByReference();
-        Lib.chfl_atom_type(this.handle, res);
+        Chemfiles.check(Lib.chfl_atom_type(this.handle, res));
         return Type.from_int(res.getValue());
     }
 
-    public void set_type(Type type) {
-        Lib.chfl_atom_set_type(this.handle, type.as_int());
+    public void set_type(Type type) throws ChemfilesException {
+        Chemfiles.check(Lib.chfl_atom_set_type(this.handle, type.as_int()));
     }
 
     protected void finalize() throws Throwable {
-        Lib.chfl_atom_free(this.handle);
+        Chemfiles.check(Lib.chfl_atom_free(this.handle));
     }
 
     private CHFL_ATOM handle;
