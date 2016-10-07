@@ -1,6 +1,8 @@
 package chemfiles;
 
 import chemfiles.lib.Lib;
+import chemfiles.lib.CHFL_ATOM;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Native;
 import com.sun.jna.ptr.FloatByReference;
@@ -8,6 +10,10 @@ import com.sun.jna.ptr.FloatByReference;
 public class Atom {
     public Atom(String name) {
         this.handle = Lib.chfl_atom(name);
+    }
+
+    Atom(CHFL_ATOM handle) {
+        this.handle = handle;
     }
 
     public String name() {
@@ -44,5 +50,5 @@ public class Atom {
         Lib.chfl_atom_free(this.handle);
     }
 
-    private Pointer handle;
+    private CHFL_ATOM handle;
 }
