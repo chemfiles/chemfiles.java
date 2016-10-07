@@ -59,6 +59,8 @@
                 <directory>target/native</directory>
                 <includes>
                     <include>libchemfiles.so</include>
+                    <include>libchemfiles.dylib</include>
+                    <include>libchemfiles.dll</include>
                 </includes>
             </resource>
         </resources>
