@@ -11,6 +11,13 @@ public class AtomTest {
         assertEquals(atom.name(), "Zn");
     }
 
+    @Test public void full_name() {
+        Atom atom = new Atom("He");
+        assertEquals(atom.full_name(), "Helium");
+        atom.set_name("Zn");
+        assertEquals(atom.full_name(), "Zinc");
+    }
+
     @Test public void mass() {
         Atom atom = new Atom("He");
         assertEquals(atom.mass(), 4.002602100, 1e-9);
@@ -23,5 +30,19 @@ public class AtomTest {
         assertEquals(atom.charge(), 0, 1e-9);
         atom.set_charge(-3.2f);
         assertEquals(atom.charge(), -3.2, 1e-6);
+    }
+
+    @Test public void type() {
+        Atom atom = new Atom("He");
+        assertEquals(atom.type(), Atom.Type.Element);
+        atom.set_type(Atom.Type.Dummy);
+        assertEquals(atom.type(), Atom.Type.Dummy);
+    }
+
+    @Test public void properties() {
+        Atom atom = new Atom("He");
+        assertEquals(atom.atomic_number(), 2);
+        assertEquals(atom.vdw_radius(), 1.4, 1e-6);
+        assertEquals(atom.covalent_radius(), 0.32, 1e-6);
     }
 }
